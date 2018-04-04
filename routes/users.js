@@ -14,5 +14,44 @@ router.get('/', (req, res) => {
     })
 })
 
-module.exports = router
+router.get('/new', (req, res) => {
+  res.render('new')
+})
 
+router.post('/new', (req, res) => {
+  const newUser = {...req.body}
+  db.addUser(newUser)
+    .then(() => {
+      res.redirect('/')
+    })
+    .catch(err => {
+      res.status(500).send('DATABASE ERROR: ' + err.message)
+    })
+})
+
+router.get('/:id', (req, res) => {
+  const userId = Number(req.params.id)
+  db.getUsers()
+    .then(results => {
+      const singleUser = results.find(user => {
+        return user.id === userId
+      })
+      res.render('edit', singleUser)
+    })
+    .catch(err => {
+      res.status(500).send('DATABASE ERROR: ' + err.message)
+    })
+})
+
+router.post('/edit', (req, res) => {
+  const updatedUser = {...req.body}
+  db.updateUser(updatedUser)
+    .then(() => {
+      res.redirect('/')
+    })
+    .catch(err => {
+      res.status(500).send('DATABASE ERROR: ' + err.message)
+    })
+})
+
+module.exports = router

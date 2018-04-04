@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>View user</title>
+</head>
+<body>
+  <form action="/edit" method="POST">
+    <div>Name:<input name="name" value="{{name}}"></div>
+    <div><input type="hidden" name="id" value="{{id}}"></div>
+    <div>Email:<input name="email" value="{{email}}"></div>
+    <div></div><button>Update User</button>
+  </form>
+</body>
+</html>
