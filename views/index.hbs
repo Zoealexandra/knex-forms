@@ -6,7 +6,11 @@
   <body>
     <ul>
     {{#each users}}
-      <li>{{name}} ({{email}})</li>
+      <li>{{name}} ({{email}}) <button 
+      <form action="/confirm/{{id}}">
+        <input type="submit" value="Delete User" />
+      </form>
+      </li>
     {{/each}}
     </ul>
   </body>

@@ -29,6 +29,20 @@ router.post('/new', (req, res) => {
     })
 })
 
+router.get('/confirm/:id', (req, res) => {
+  const userId = Number(req.params.id)
+  db.getUsers()
+    .then(results => {
+      const singleUser = results.find(user => {
+        return user.id === userId
+      })
+      res.render('confirm', singleUser)
+    })
+    .catch(err => {
+      res.status(500).send('DATABASE ERROR: ' + err.message)
+    })
+})
+
 router.get('/:id', (req, res) => {
   const userId = Number(req.params.id)
   db.getUsers()
